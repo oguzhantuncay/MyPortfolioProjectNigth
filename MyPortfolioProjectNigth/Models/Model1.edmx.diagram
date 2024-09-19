@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa15bd125af141e3a59d1ee98a351d8c" Name="Diagram1">
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.About" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Contact" Width="1.5" PointX="2.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Education" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Experience" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Feature" Width="1.5" PointX="4.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Profile" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Services" Width="1.5" PointX="8.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.Skill" Width="1.5" PointX="6.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbMyPortfolioNightModel.sysdiagrams" Width="1.5" PointX="10.125" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="DbMyPortfolioNightModel.FK_Contact_Category" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

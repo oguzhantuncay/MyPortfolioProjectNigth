@@ -1,0 +1,28 @@
+﻿@model List<MyPortfolioProjectNigth.Models.Skill>
+@{
+    ViewBag.Title = "Skillist";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+<h2 class=""></h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Yetenek</th>
+        <th>Skill Puan</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SkillId</td>
+            <td>@item.SkillName</td>
+            <td>@item.Rate</td>
+            <td><a href="/Skills/DeleteSkill/@item.SkillId" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Skills/UpdateGetSkill/@item.SkillId" class="btn btn-danger">GÜNCELLE</a></td>
+          
+        </tr>
+    }
+
+</table>
