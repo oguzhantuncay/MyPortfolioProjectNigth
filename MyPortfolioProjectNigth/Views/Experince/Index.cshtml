@@ -1,0 +1,118 @@
+﻿@model List<MyPortfolioProjectNigth.Models.Experience>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src=" https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/datetime-moment.js"></script>
+
+
+<body onload="myFunction()" style="margin:0;">
+    <div class="container-fluid">
+        <div class="card mb-2">
+            <div class="card-body">
+                <h4>
+                    
+                    Deneyim Tablosu
+                </h4>
+            </div>
+        </div>
+        <div class="card mb-5">
+
+            <div class="card-body" id="delayedDiv">
+
+                <div id="myDiv" class="animate-bottom">
+
+                    <table id="example" class="table table-bordered table-hover" style="width:100%">
+
+                        <thead style="background-color: #3b5998; color: white; text-align: center">
+                            <tr>
+                                <th>#</th>
+                                <th>Başlık</th>
+                                <th>Alt Başlık</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ExperinceId</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.SubTitle</td>
+
+                                    <td><a href="/Experince/DeleteExperince/@item.ExperinceId" class="btn btn-danger">SİL</a></td>
+                                    <td><a href="/Experince/UpdateExperince/@item.ExperinceId" class="btn btn-warning">GÜNCELLE</a></td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/Experince/Create" class="btn btn-secondary">Ekle</a>
+    <script>
+        $.fn.dataTable.moment('DD.MM.YYYY');
+        new DataTable('#example', {
+            "pageLength": 5,
+            "processing": true,
+            "language": {
+                "decimal": ",",
+                "thousands": ".",
+                "sProcessing": "İşleniyor...",
+                "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arası gösteriliyor",
+                "sInfoEmpty": "Gösterilecek kayıt yok",
+                "sInfoFiltered": "(_MAX_ kayıt içerisinden filtrelendi)",
+                "sInfoPostFix": "",
+                "sSearch": "Ara:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "İlk",
+                    "sPrevious": "Önceki",
+                    "sNext": "Sonraki",
+                    "sLast": "Son"
+                }
+            },
+        });
+
+        $('#exportBtn').click(function () {
+            var wb = XLSX.utils.table_to_book(document.getElementById('example'), { sheet: "Sayfa1" });
+            XLSX.writeFile(wb, 'NumuneListesi.xlsx');
+        });
+    </script>
+
+    <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 3000);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }
+    </script>
+
+</body>

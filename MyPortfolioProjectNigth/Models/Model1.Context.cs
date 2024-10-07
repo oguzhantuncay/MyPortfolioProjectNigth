@@ -32,8 +32,9 @@ namespace MyPortfolioProjectNigth.Models
         public virtual DbSet<Experience> Experience { get; set; }
         public virtual DbSet<Feature> Feature { get; set; }
         public virtual DbSet<Profile> Profile { get; set; }
-        public virtual DbSet<Services> Services { get; set; }
         public virtual DbSet<Skill> Skill { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Social> Social { get; set; }
+        public virtual DbSet<Intern> Intern { get; set; }
+        public virtual DbSet<Service> Service { get; set; }
     }
 }

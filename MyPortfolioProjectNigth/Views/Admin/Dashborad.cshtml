@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+<style>
+    .card-custom {
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        height: 250px; /* Kart yüksekliği sabitlendi */
+    }
+
+    .card-custom:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        transform: translateY(-8px);
+    }
+
+    .card-icon {
+        font-size: 4rem; /* İkon boyutunu artırdım */
+        margin-bottom: 1rem; /* İkon ile başlık arasında boşluk ekledim */
+    }
+
+    .card-title {
+        font-weight: bold; /* Başlığı kalın yap */
+        font-size: 1.5rem; /* Başlık boyutunu artırdım */
+    }
+
+    .card-text {
+        font-size: 1.2rem; /* Metin boyutunu artırdım */
+    }
+
+    /* Kart renkleri */
+    .bg-primary { background-color: #007bff; }
+    .bg-success { background-color: #28a745; }
+    .bg-warning { background-color: #ffc107; }
+    .bg-danger { background-color: #dc3545; }
+
+  
+</style>
+
+<div class="container my-5">
+    <h3 class="text-center mb-4">Dashboard</h3>
+    <div class="row g-4">
+        <!-- Kart 1 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-custom text-center p-4 bg-primary">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <i class="card-icon bi bi-people-fill"></i>
+                    <h5 class="card-title">Yeteneklerim</h5>
+                    <p class="card-text">@ViewBag.skill</p>
+                </div>
+            </div>
+        </div>
+        <!-- Kart 2 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-custom text-center p-4 bg-success">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <i class="card-icon bi bi-cart-fill"></i>
+                    <h5 class="card-title">Mesajlarım</h5>
+                    <p class="card-text">@ViewBag.message</p>
+                </div>
+            </div>
+        </div>
+        <!-- Kart 3 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-custom text-center p-4 bg-warning">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <i class="card-icon bi bi-bar-chart-line-fill"></i>
+                    <h5 class="card-title">Teşekkürlerim</h5>
+                    <p class="card-text">@ViewBag.tesekkur</p>
+                </div>
+            </div>
+        </div>
+        <!-- Kart 4 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-custom text-center p-4 bg-danger">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <i class="card-icon bi bi-clipboard-check-fill"></i>
+                    <h5 class="card-title">En iyi Yeteneğim</h5>
+                    <p class="card-text">@ViewBag.SkillName = @ViewBag.Rate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

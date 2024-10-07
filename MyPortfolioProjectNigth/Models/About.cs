@@ -17,5 +17,6 @@ namespace MyPortfolioProjectNigth.Models
         public int AboutId { get; set; }
         public string Title { get; set; }
         public string Descraption { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

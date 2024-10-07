@@ -1,0 +1,127 @@
+﻿@model MyPortfolioProjectNigth.Models.Contact
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@Html.Action("PartialHead", "Default")
+<body>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar Start -->
+
+    @Html.Action("PartialNavbar", "Default")
+    <!-- Navbar End -->
+    <!-- Header Start -->
+    @Html.Action("PartialHeader", "Default")
+    <!-- Header End -->
+    <!-- About Start -->
+    @Html.Action("PartialAbout", "Default")
+    <!-- About End -->
+    <!-- Education Start -->
+    @Html.Action("PartialEducation", "Default")
+    <!-- Education End -->
+    <!-- Experience Start -->
+    @Html.Action("PartialExperience", "Default")
+    <!--İntern-->
+    @Html.Action("Partialintern", "Default")
+    <!--İntern-->
+    <!-- Exparience End -->
+    <!-- Skills Start -->
+    @Html.Action("PartialSkills", "Default")
+    <!-- Skills End -->
+    <!-- Service Start -->
+    @Html.Action("PartialServices", "Default")
+    <!-- Service End -->
+    <!-- Portfolio Start -->
+    @Html.Action("PartialPortfolio", "Default")
+    <!-- Portfolio End -->
+    <!-- Blog Start -->
+    @Html.Action("PartialBlog", "Default")
+    <!-- Blog End -->
+    <!-- Testimonial Start -->
+    @Html.Action("PartialReferanslarım", "Default")
+    <!-- Testimonial End -->
+    <!-- Contact Start -->
+    <div class="container-fluid" id="pigraContact">
+        <div class="container">
+            <div class="row g-0">
+                @Html.Action("PartialContactSıdeBar", "Contact")
+                <div class="col-lg-9">
+                    <div class="contact-content h-100 pt-6 ps-6 pb-6">
+                        <div class="bg-light p-4">
+                            <div class="row g-5">
+                                @Html.Action("PartialContactProfil", "Contact")
+                                <div class="col-xl-7 wow fadeInUp" data-wow-delay="0.3s">
+                                    <div>
+
+                                        <form method="post">
+                                            <div class="row g-3">
+                                                <div class="col-lg-12 col-xl-6 ">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control border-0" id="NameSurname" name="NameSurname" required placeholder="Ad ve Soyad">
+                                                        <label for="name">Your Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-xl-6">
+                                                    <div class="form-floating">
+                                                        <input type="email" class="form-control border-0" id="Email" name="Email" placeholder="Mail">
+                                                        <label for="email">Your Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-xl-6">
+                                                    <div class="form-floating">
+                                                        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.List, new { @class = "form-control border-0" })
+                                                        <label for="phone">Kategori</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-xl-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control border-0" id="subject" name="Subject" placeholder="Mesaj konusu">
+                                                        <label for="subject">Mesaj Konusu</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control border-0" placeholder="Mesaj yazınız"  name="Message" style="height: 120px"></textarea>
+                                                        <label for="message">Mesaj yazınız</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary w-100 py-3">Mesajı Gönder</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        @Html.Action("PartialContactLocation", "Contact")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+    <!-- Footer Start -->
+    @Html.Action("PartialFooter", "Default")
+    <!-- Footer End -->
+    <!-- Back to Top -->
+
+
+    @Html.Action("PartialScript", "Default")
+
+</body>
+
+</html>

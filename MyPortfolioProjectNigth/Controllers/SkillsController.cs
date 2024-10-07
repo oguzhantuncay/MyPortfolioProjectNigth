@@ -17,6 +17,11 @@ namespace MyPortfolioProjectNigth.Controllers
             var deger = context.Skill.ToList();
             return View(deger);
         }
+        public ActionResult SkilChart()
+        {
+            var deger = context.Skill.ToList();
+            return View(deger);
+        }
         [HttpGet]
         public ActionResult CreateSkill()
         {

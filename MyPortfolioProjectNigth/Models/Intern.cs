@@ -12,11 +12,14 @@ namespace MyPortfolioProjectNigth.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Services
+    public partial class Intern
     {
-        public int ServicesID { get; set; }
-        public string Title { get; set; }
-        public string Icon { get; set; }
-        public string Description { get; set; }
+        public int internID { get; set; }
+        public string CompanyName { get; set; }
+        public string InternDescription { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public string Supervisor { get; set; }
+        public string SupervisorMail { get; set; }
     }
 }

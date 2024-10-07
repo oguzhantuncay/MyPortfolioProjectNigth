@@ -1,0 +1,26 @@
+﻿@model MyPortfolioProjectNigth.Models.Education
+
+@{
+    ViewBag.Title = "UpdateGetEgitim";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<form method="post">
+    @Html.HiddenFor(x => x.EducationId)
+
+    <div class="form-group">
+        <label>Tarih</label>
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Okul</label>
+        @Html.TextBoxFor(x => x.SubTitle, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Bölüm</label>
+        @Html.TextBoxFor(x => x.Descraption, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-info">Güncelle</button>
+</form>

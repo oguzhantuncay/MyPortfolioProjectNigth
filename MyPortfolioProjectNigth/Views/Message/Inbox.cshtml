@@ -1,0 +1,68 @@
+﻿@model List<MyPortfolioProjectNigth.Models.Contact>
+@{
+    ViewBag.Title = "Inbox";
+    Layout = "~/Views/Admin/Index.cshtml";
+    int count = 0;
+}
+
+
+
+@{
+    // Rastgele renk oluşturma için Random nesnesini bir kez oluştur
+    var random = new Random();
+
+    // Rastgele renk oluşturma fonksiyonu
+    string GetRandomColor()
+    {
+        return $"#{random.Next(0x1000000):X6}";
+    }
+
+    // Renklerin tekrar etmemesi için bir Dictionary
+    var colorMap = new Dictionary<string, string>();
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Gönderen</th>
+        <th>Tarih</th>
+        <th>Konu</th>
+        <th>Durum</th>
+        <th>Mesajı Aç</th>
+        <th>Mesajı Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        string subjectColor;
+
+        // Aynı konu için renk varsa kullan, yoksa yeni renk oluştur
+        if (!colorMap.ContainsKey(item.Subject))
+        {
+            subjectColor = GetRandomColor();
+            colorMap[item.Subject] = subjectColor; // Yeni rengi sakla
+        }
+        else
+        {
+            subjectColor = colorMap[item.Subject]; // Var olan rengi kullan
+        }
+
+        <tr>
+            <td>@count</td>
+            <td>@item.NameSurname</td>
+            <td>@item.SendDate</td>
+            <td style="color:@subjectColor;">@item.Subject</td> <!-- Renk uygulandı -->
+            @if (item.IsRead == false)
+            {
+                <td><a href="/Message/ChangeMessageStatusToTrue/@item.ContactId" class="btn btn-info">Okundu olarak işaretle</a></td>
+            }
+            else
+            {
+                <td><a href="/Message/ChangeMessageStatusToFalse/@item.ContactId" class="btn btn-info">Okunmadı olarak işaretle</a></td>
+            }
+
+            <td><a href="#" class="btn btn-outline-warning">Mesajı Aç</a></td>
+            <td><a href="#" class="btn btn-outline-danger">Mesajı Sil</a></td>
+        </tr>
+    }
+</table>

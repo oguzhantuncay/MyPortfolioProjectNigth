@@ -1,0 +1,79 @@
+﻿@model List<MyPortfolioProjectNigth.Models.Skill>
+@{
+    ViewBag.Title = "SkilChart";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Yetenek Grafiği</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="m-0">Yetenek Puanları</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="skillChart" width="400" height="200"></canvas>
+            </div>
+            <div class="card-footer text-muted text-center">
+                Grafik, yeteneklerin puanlarını göstermektedir.
+            </div>
+        </div>
+
+        <script>
+            // Verileri modelden al
+            var skillData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+
+            // Grafik verilerini ayarla
+            var labels = skillData.map(function(skill) {
+                return skill.SkillName;
+            });
+
+            var data = skillData.map(function(skill) {
+                return skill.Rate;
+            });
+
+            // Chart.js ile grafiği oluştur
+            var ctx = document.getElementById('skillChart').getContext('2d');
+            var skillChart = new Chart(ctx, {
+                type: 'bar', // Grafik türü
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Yetenek Puanları',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Puan'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Yetenekler'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

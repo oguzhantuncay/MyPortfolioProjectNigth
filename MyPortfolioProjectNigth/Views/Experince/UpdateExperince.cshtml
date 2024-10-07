@@ -1,0 +1,19 @@
+﻿@model MyPortfolioProjectNigth.Models.Experience
+@{
+    ViewBag.Title = "UpdateExperince";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<form method="post">
+    @Html.HiddenFor(x=>x.ExperinceId)
+    <label>Deneyim Başlığı</label>
+    @Html.TextBoxFor(x => x.Title)
+    <label>Deneyim Başlığı</label>
+    @Html.TextBoxFor(x => x.SubTitle)
+    <label>Deneyim Başlığı</label>
+    @Html.TextAreaFor(x => x.Description)
+    <br />
+    <button class="btn btn-info">Güncelle</button>
+
+
+</form>

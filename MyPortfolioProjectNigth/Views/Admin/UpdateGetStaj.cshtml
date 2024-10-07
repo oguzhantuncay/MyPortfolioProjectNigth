@@ -1,0 +1,38 @@
+﻿@model MyPortfolioProjectNigth.Models.Intern
+@{
+    ViewBag.Title = "UpdateGetStaj";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2>Staj Ekle</h2>
+
+<form method="post">
+
+
+    @Html.HiddenFor(x=>x.internID)
+    <div class="form-group">
+        <label>Şirket Adı</label>
+        @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Açıklaması</label>
+        @Html.TextBoxFor(x => x.InternDescription, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Başlangıç </label>
+        @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })
+    </div>
+    <div class="form-group">
+        <label>Başlangıç </label>
+        @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "Date" })
+    </div>
+    <div class="form-group">
+        <label>Yetkli Personel</label>
+        @Html.TextBoxFor(x => x.Supervisor, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Yetkli Mail</label>
+        @Html.TextBoxFor(x => x.SupervisorMail, new { @class = "form-control", @type = "email" })
+    </div>
+    <button type="submit" class="btn btn-info">Güncelle</button>
+</form>

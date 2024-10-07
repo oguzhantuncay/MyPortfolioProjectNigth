@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2 class="mb-4">İstatistik</h2>
+
+<div class="alert alert-success">Toplam Mesaj: @ViewBag.totalmessagecount   </div>
+<div class="alert alert-danger">Okunan Mesaj: @ViewBag.True   </div>
+<div class="alert alert-warning">Okunmayan Mesaj: @ViewBag.False   </div>
+<div class="alert alert-warning">En Yüksek Puan: @ViewBag.Skilssum   </div>
+<div class="alert alert-warning">Ortalama Puan: @ViewBag.Skilsavg   </div>
+<div class="alert alert-dark">EN çok paun: @ViewBag.MaxRateSkilsName   </div>
+<div class="alert alert-dark">EN çok paun: @ViewBag.getMessageCountBySubjectReferances   </div>
+<div class="alert alert-dark">EN çok paun: @ViewBag.getMessageCountByEmailContainHAndIsReadTrue   </div>
+<div class="alert alert-dark">90 olab: @ViewBag.Rate90   </div>

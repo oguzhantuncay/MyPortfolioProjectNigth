@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Hakkında Ekle</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken() <!-- CSRF koruması için -->
+
+        <div class="form-group">
+            <label for="SkillName">Skill Adı</label>
+            <input type="text" class="form-control" id="SkillName" name="SkillName" required placeholder="Yetenek adını girin..." />
+        </div>
+
+        <div class="form-group">
+            <label for="Rate">Puan</label>
+            <input name="Rate" id="Rate" type="number" max="100" min="0" class="form-control" required placeholder="0 - 100 arası bir puan girin..." />
+        </div>
+
+        <button type="submit" class="btn btn-info">Ekle</button>
+    }
+</div>

@@ -4,14 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbMyPortfolioNightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbMyPortfolioNightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="AboutId" />
           </Key>
           <Property Name="AboutId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Descraption" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descraption" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -51,14 +52,6 @@
           <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DbMyPortfolioNight.dbo.Expertise' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Expertise">
-          <Property Name="ExperiseId" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="30" />
-          <Property Name="Icon" Type="nvarchar(max)" />
-          <Property Name="Descrption" Type="nvarchar" MaxLength="100" />
-        </EntityType>-->
         <EntityType Name="Feature">
           <Key>
             <PropertyRef Name="Featureldid" />
@@ -67,6 +60,18 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Expertise' does not have a 
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="NameSurname" Type="nvarchar" MaxLength="50" />
           <Property Name="Subtitle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Intern">
+          <Key>
+            <PropertyRef Name="internID" />
+          </Key>
+          <Property Name="internID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="InternDescription" Type="nvarchar" MaxLength="1000" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Supervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorMail" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -78,15 +83,22 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Expertise' does not have a 
           <Property Name="Phone" Type="nvarchar" MaxLength="30" />
           <Property Name="Github" Type="nvarchar" MaxLength="50" />
           <Property Name="Adress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Services">
+        <EntityType Name="Service">
           <Key>
             <PropertyRef Name="ServicesID" />
           </Key>
           <Property Name="ServicesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Icon" Type="nvarchar(max)" />
-          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Subtitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Services1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Services2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Services3" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -95,15 +107,19 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Expertise' does not have a 
           <Property Name="SkillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SkillName" Type="nvarchar" MaxLength="30" />
           <Property Name="Rate" Type="tinyint" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Social">
-          <Property Name="SocialMediaId" Type="int" />
+          <Key>
+            <PropertyRef Name="SocialMediaId" />
+          </Key>
+          <Property Name="SocialMediaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Url" Type="nvarchar" MaxLength="100" />
           <Property Name="Icon" Type="nvarchar" MaxLength="250" />
-        </EntityType>-->
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -133,17 +149,18 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Experience" EntityType="Self.Experience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intern" EntityType="Self.Intern" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Social" EntityType="Self.Social" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Contact_Category" Association="Self.FK_Contact_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbMyPortfolioNightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -153,7 +170,8 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           </Key>
           <Property Name="AboutId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Descraption" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descraption" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -214,15 +232,10 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Github" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Services">
-          <Key>
-            <PropertyRef Name="ServicesID" />
-          </Key>
-          <Property Name="ServicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -231,16 +244,8 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           <Property Name="SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SkillName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Rate" Type="Byte" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Contact_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -262,14 +267,49 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           <EntitySet Name="Experience" EntityType="Self.Experience" />
           <EntitySet Name="Feature" EntityType="Self.Feature" />
           <EntitySet Name="Profile" EntityType="Self.Profile" />
-          <EntitySet Name="Services" EntityType="Self.Services" />
           <EntitySet Name="Skill" EntityType="Self.Skill" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Contact_Category" Association="Self.FK_Contact_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
+          <EntitySet Name="Social" EntityType="DbMyPortfolioNightModel.Social" />
+          <EntitySet Name="Intern" EntityType="DbMyPortfolioNightModel.Intern" />
+          <EntitySet Name="Service" EntityType="DbMyPortfolioNightModel.Service" />
         </EntityContainer>
+        <EntityType Name="Social">
+          <Key>
+            <PropertyRef Name="SocialMediaId" />
+          </Key>
+          <Property Name="SocialMediaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Intern">
+          <Key>
+            <PropertyRef Name="internID" />
+          </Key>
+          <Property Name="internID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="InternDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Supervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServicesID" />
+          </Key>
+          <Property Name="ServicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Services1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Services2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Services3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -279,6 +319,7 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           <EntitySetMapping Name="About">
             <EntityTypeMapping TypeName="DbMyPortfolioNightModel.About">
               <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="AboutId" ColumnName="AboutId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Descraption" ColumnName="Descraption" />
@@ -340,6 +381,10 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
           <EntitySetMapping Name="Profile">
             <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Profile">
               <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="Birtdate" ColumnName="Birtdate" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -349,33 +394,51 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Social' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Services">
-              <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Skill">
             <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Skill">
               <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
                 <ScalarProperty Name="SkillId" ColumnName="SkillId" />
                 <ScalarProperty Name="SkillName" ColumnName="SkillName" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+          <EntitySetMapping Name="Social">
+            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Social">
+              <MappingFragment StoreEntitySet="Social">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SocialMediaId" ColumnName="SocialMediaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intern">
+            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Intern">
+              <MappingFragment StoreEntitySet="Intern">
+                <ScalarProperty Name="SupervisorMail" ColumnName="SupervisorMail" />
+                <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="InternDescription" ColumnName="InternDescription" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="internID" ColumnName="internID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Services3" ColumnName="Services3" />
+                <ScalarProperty Name="Services2" ColumnName="Services2" />
+                <ScalarProperty Name="Services1" ColumnName="Services1" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
